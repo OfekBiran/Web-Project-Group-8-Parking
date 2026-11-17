@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חניה שכנה | הרשמה</title>
+</head>
+<body>
+    <header>
+               <p class="logo">P חניה שכנה</p>
+
+    </header>
+    <main>
+        <section>
+            <h1>הרשמה והצטרפות לבניין</h1>
+            <form action="/register" method="POST" id="register-form">
+
+                <h2>פרטים אישיים</h2>
+
+                <div class="form-group"> 
+                    <label for="reg-name">שם מלא</label>
+                    <input type="text" id="reg-name" name="fullName" placeholder="נועה לוי" required>
+                    <span class="error-msg" id="reg-name-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-phone">טלפון</label>
+                    <input type="tel" id="reg-phone" name="phone" placeholder="050-0000000" required>
+                    <span class="error-msg" id="reg-phone-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-email">אימייל</label>
+                    <input type="email" id="reg-email" name="email" placeholder="noa@mail.com" required>
+                    <span class="error-msg" id="reg-email-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-password">סיסמה (לפחות 8 תווים)</label>
+                    <input type="password" id="reg-password" name="password" required>
+                    <span class="error-msg" id="reg-password-error"></span>
+                </div>
+
+                <h2>פרטי דירה וחניה</h2>
+
+                <div class="form-group">
+                    <label for="reg-building-code">קוד בניין (מוועד הבית)</label>
+                    <input type="text" id="reg-building-code" name="buildingCode" placeholder="HRZ-1234" required>
+                    <span class="error-msg" id="reg-building-code-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="reg-apartment">מספר דירה</label>
+                    <input type="number" id="reg-apartment" name="apartment" placeholder="5" required>
+                    <span class="error-msg" id="reg-apartment-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <!-- בלי required - יש דיירים בלי חניה שרק מחפשים -->
+                    <label for="reg-parking">מספר חניה (לא חובה)</label>
+                    <input type="number" id="reg-parking" name="parkingNumber" placeholder="14">
+                    <span class="error-msg" id="reg-parking-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">הרשמה והצטרפות לבניין</button>
+            </form>
+
+            <p>כבר רשום? <a href="login.html">להתחברות</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 חניה שכנה | קורל בגון, מיכל ברקוביץ׳, אופק בירן</p>
+    </footer>
+
+</body>
+</html>

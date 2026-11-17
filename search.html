@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חניה שכנה | חיפוש חניה</title>
+</head>
+<body>
+
+    <header>
+        <p class="logo">P חניה שכנה</p>
+    </header>
+
+    <!-- תפריט הניווט - זהה בשני העמודים הפנימיים. active מסמן את העמוד הנוכחי -->
+    <nav>
+        <a href="search.html" class="active">חיפוש חניה</a>
+        <a href="my-parking.html">החניה שלי</a>
+        <a href="index.html">התנתקות</a>
+    </nav>
+
+    <main>
+        <h1>חיפוש חניה</h1>
+
+        <!-- טופס חיפוש -->
+        <section id="search-section">
+            <h2>חיפוש חניה פנויה</h2>
+
+            <p class="message" id="search-message"></p>
+
+            <!-- כי זה חיפוש ואין מידע רגיש GET מתאים לחיפושים) -->
+            <form action="/search" method="GET" id="search-form">
+
+                <div class="form-group">
+                    <label for="search-date">תאריך</label>
+                    <input type="date" id="search-date" name="date" required>
+                    <span class="error-msg" id="search-date-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="search-start">משעה</label>
+                    <input type="time" id="search-start" name="startTime" required>
+                    <span class="error-msg" id="search-start-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="search-end">עד שעה</label>
+                    <input type="time" id="search-end" name="endTime" required>
+                    <span class="error-msg" id="search-end-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="search-note">הערה (לא חובה)</label>
+                    <input type="text" id="search-note" name="note">
+                </div>
+
+                <button type="submit" class="btn btn-primary">חפש</button>
+            </form>
+        </section>
+
+        <!-- תוצאות החיפוש -->
+        <section id="results-section">
+            <h2>חניות פנויות</h2>
+
+            <!-- כאן תופיע ההודעה "אין חניות פנויות בטווח המבוקש. נסה לחפש זמן אחר." כשאין תוצאות -->
+            <p class="message" id="no-results-message"></p>
+
+            <!-- הכרטיסים ייווצרו ב-JS לפי תוצאות החיפוש. כל כרטיס ייראה כך:
+                <article class="parking-card">
+                    <h3>חניה [מספר] · דירה [מספר] · [שם השכן]</h3>
+                    <p>[זמינות קבועה / יציאה חד-פעמית] · פנויה עד [שעה]</p>
+                    <span class="status status-free">פנויה</span>
+                    <button type="button" class="btn btn-primary">שלח בקשה</button>
+                </article>
+ -->
+            <div id="results-list"></div>
+        </section>
+
+        <!-- הבקשות שהמשתמש שלח -->
+        <section id="my-requests-section">
+            <h2>בקשות מציאת חניה פנויה</h2>
+
+            <!-- הודעת משוב אחרי שליחה/ביטול, למשל "הבקשה נשלחה וממתינה לאישור" -->
+            <p class="message" id="requests-message"></p>
+
+            <!-- הבקשות ייכנסו לכאן ב-JS. כל בקשה תהיה li:
+                <li>
+                    [תאריך] · [שעות] · חניה [מספר] · [שם בעל החניה] · [טלפון - רק אם אושרה]
+                    <span class="status">[ממתינה לאישור / אושרה / נדחתה / בוטלה / לא נענתה]</span>
+                    <button type="button" class="btn">ביטול</button>   (רק בממתינה או אושרה)
+                </li>
+ -->
+            <ul id="my-requests-list"></ul>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 חניה שכנה | קורל בגון, מיכל ברקוביץ׳, אופק בירן</p>
+    </footer>
+
+</body>
+</html>

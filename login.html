@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חניה שכנה | התחברות</title>
+</head>
+<body>
+    <header>
+                <p class="logo">P חניה שכנה</p>
+    </header>
+    <main>
+        <section>
+            <h1>התחברות</h1>
+            <form action="/login" method="POST" id="login-form">
+                <div class="form-group">
+                    <label for="login-email">אימייל</label>
+                    <input type="email" id="login-email" name="email" placeholder="noa@mail.com" required>
+                    <span class="error-msg" id="login-email-error"></span> <!-- האם צריך??-->
+                </div>
+                <div class="form-group">
+                    <label for="login-password">סיסמה</label>
+                    <input type="password" id="login-password" name="password" required>
+                    <span class="error-msg" id="login-password-error"></span> <!-- האם צריך??-->
+                </div>
+                <button type="submit" class="btn btn-primary">כניסה</button>
+            </form>
+            <p>עוד אין לך משתמש? <a href="register.html">להרשמה</a></p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 חניה שכנה | קורל בגון, מיכל ברקוביץ׳, אופק בירן</p>
+    </footer>
+
+</body>
+</html>

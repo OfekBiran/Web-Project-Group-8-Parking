@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>חניה שכנה | החניה שלי</title>
+</head>
+<body>
+
+    <header>
+        <p class="logo">P חניה שכנה</p>
+    </header>
+
+    <nav>
+        <a href="search.html">חיפוש חניה</a>
+        <a href="my-parking.html" class="active">החניה שלי</a>
+        <a href="index.html">התנתקות</a>
+    </nav>
+
+    <main>
+        <h1>החניה שלי</h1>
+
+        <!-- מצב החניה -->
+        <section id="parking-status-section">
+            <!-- JS: מקבל מהשרת את מספר החניה של המשתמש (נשמר בהרשמה) וכותב אותו ב-span -->
+            <h2>חניה <span id="parking-number"></span></h2>
+
+            <!-- JS: מקבל מהשרת את מצב החניה וכותב ב-span. אחת מ-3 אפשרויות:
+                 הרכב שלי בחניה / פנויה לשכנים עד [שעה] / מושאלת לשכן -->
+            <p>סטטוס: <span class="status" id="parking-status"></span></p>
+        </section>
+
+        <!--  2. יוצאים מהחניה - שלוש דרכים לפנות את החניה לשכנים -->
+        <section id="leave-section">
+            <h2>יוצאים מהחניה?</h2>
+
+            <!-- JS: כותב כאן הודעת משוב אחרי כל פעולה באזור הזה
+                 למשל "הזמינות עודכנה בהצלחה" או "החלון נמחק" -->
+            <p class="message" id="leave-message"></p>
+
+            <!-- --- יציאה עכשיו --- -->
+            <!-- יציאה ספונטנית - שעת היציאה היא עכשיו, אז צריך רק שעת חזרה -->
+            <h3>יציאה עכשיו</h3>
+            <form action="/leave-now" method="POST" id="leave-form">
+                <button type="submit" class="btn btn-primary">יצאתי עכשיו</button> <!-- זה ילקח מהשרת יותר אמין השעה עצמה-->
+                <div class="form-group">
+                    <label for="return-time">שעת חזרה משוערת</label>
+                    <input type="time" id="return-time" name="returnTime" required>
+                    <span class="error-msg" id="return-time-error"></span>
+                </div>
+            </form>
+
+            <!-- JS: אם השרת אומר שיש יציאה פעילה כרגע - ממלא כאן. אם אין - נשאר ריק:
+                <p>יציאה פעילה מ-[שעה] עד [שעה]</p>
+                <button type="button" class="btn">עריכה</button>
+                <button type="button" class="btn">ביטול</button>
+            -->
+            <div id="active-leave"></div>
+
+            <!-- --- יציאה חד-פעמית --- -->
+            <!-- יציאה שמתכננים מראש (למשל הערב), לא חוזרת כל שבוע ולכן לא ביציאה הקבועה -->
+            <h3>יציאה חד-פעמית</h3>
+            <form action="/planned-leave" method="POST" id="planned-leave-form">
+                <div class="form-group">
+                    <label for="planned-date">תאריך</label>
+                    <input type="date" id="planned-date" name="date" required>
+                    <span class="error-msg" id="planned-date-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="planned-start">שעת יציאה</label>
+                    <input type="time" id="planned-start" name="leaveTime" required>
+                    <span class="error-msg" id="planned-start-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="planned-end">שעת חזרה משוערת</label>
+                    <input type="time" id="planned-end" name="returnTime" required>
+                    <span class="error-msg" id="planned-end-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">שמור יציאה</button>
+            </form>
+
+            <!-- JS: מקבל מהשרת את היציאות החד-פעמיות שתוכננו ומוסיף li לכל אחת:
+                <li>
+                    [תאריך] · [שעת יציאה]-[שעת חזרה]
+                    <button type="button" class="btn">עריכה</button>
+                    <button type="button" class="btn">ביטול</button>
+                </li>
+            -->
+            <ul id="planned-leaves-list"></ul>
+
+            <!-- --- יציאה קבועה (טבלת הזמינות הקבועה מהאפיון) --- -->
+            <h3>יציאה קבועה</h3>
+
+            <!-- JS: מקבל מהשרת את החלונות הקבועים של המשתמש ומוסיף שורה לכל חלון:
+                <tr>
+                    <td>[ימים]</td>
+                    <td>[שעות]</td>
+                    <td>
+                        <button type="button" class="btn">השהייה</button>
+                        <button type="button" class="btn">מחיקה</button>
+                    </td>
+                </tr>
+            -->
+            <table id="availability-table">
+                <tr>
+                    <th>ימים</th>
+                    <th>שעות</th>
+                    <th>פעולות</th>
+                </tr>
+            </table>
+
+            <!-- הוספת חלון חדש. checkbox לכל יום כי אפשר לבחור כמה ימים -->
+            <h4>הוספת חלון קבוע</h4>
+            <form action="/availability" method="POST" id="availability-form">
+
+                <p>ימים</p>
+                <div class="days-group">
+                    <input type="checkbox" id="day-sun" name="days" value="sun">
+                    <label for="day-sun">א'</label>
+
+                    <input type="checkbox" id="day-mon" name="days" value="mon">
+                    <label for="day-mon">ב'</label>
+
+                    <input type="checkbox" id="day-tue" name="days" value="tue">
+                    <label for="day-tue">ג'</label>
+
+                    <input type="checkbox" id="day-wed" name="days" value="wed">
+                    <label for="day-wed">ד'</label>
+
+                    <input type="checkbox" id="day-thu" name="days" value="thu">
+                    <label for="day-thu">ה'</label>
+
+                    <input type="checkbox" id="day-fri" name="days" value="fri">
+                    <label for="day-fri">ו'</label>
+
+                    <input type="checkbox" id="day-sat" name="days" value="sat">
+                    <label for="day-sat">ש'</label>
+                </div>
+                <span class="error-msg" id="days-error"></span>
+
+                <div class="form-group">
+                    <label for="window-start">משעה</label>
+                    <input type="time" id="window-start" name="startTime" required>
+                    <span class="error-msg" id="window-start-error"></span>
+                </div>
+
+                <div class="form-group">
+                    <label for="window-end">עד שעה</label>
+                    <input type="time" id="window-end" name="endTime" required>
+                    <span class="error-msg" id="window-end-error"></span>
+                </div>
+
+                <button type="submit" class="btn btn-primary">+ הוסף חלון קבוע</button>
+            </form>
+        </section>
+
+        <!-- ===== 3. בקשות שמחכות לאישור שלי ===== -->
+        <!-- לפני ההזמנות כי בקשה שמאשרים עוברת להזמנות העתידיות -->
+        <section id="pending-section">
+            <h2>בקשות חניה ממתינות לאישור</h2>
+
+            <!-- JS: אם יש בקשה שלא נענתה ונשארו פחות מ-24 שעות - כותב כאן
+                 "בקשה למחר ממתינה לתגובתך". אחרת נשאר ריק -->
+            <p class="message" id="pending-alert"></p>
+
+            <!-- JS: מקבל מהשרת את הבקשות שמחכות לאישור שלי ומוסיף li לכל אחת:
+                <li>
+                    <p>[שם המבקש], דירה [מספר] · [תאריך] [שעות]</p>
+                    <p>[הערה / ללא הערה]</p>
+                    <button type="button" class="btn btn-primary">אשר</button>
+                    <button type="button" class="btn">דחה</button>
+                </li>
+            -->
+            <ul id="pending-list"></ul>
+        </section>
+
+        <!-- ===== 4. הזמנות החניה שלי ===== -->
+        <section id="bookings-section">
+            <h2>הזמנות החניה שלי</h2>
+
+            <!-- לשוניות - button כי הן מחליפות תוכן באותו עמוד (נממש ב-JS) -->
+            <div class="tabs">
+                <button type="button" class="tab-btn active" id="future-tab">הזמנות עתידיות</button>
+                <button type="button" class="tab-btn" id="history-tab">היסטוריית הזמנות</button>
+            </div>
+
+            <!-- בטבלאות יש רק שורת כותרות (זהה לכל משתמש). שורות הנתונים ייווספו ב-JS -->
+            <div id="future-bookings">
+                <h3>הזמנות עתידיות</h3>
+                <!-- JS: מקבל מהשרת הזמנות שאושרו ועוד לא התקיימו ומוסיף שורה לכל אחת:
+                    <tr>
+                        <td>[תאריך]</td>
+                        <td>[שעות]</td>
+                        <td>[שם השכן], דירה [מספר]</td>
+                        <td>[טלפון]</td>
+                        <td><span class="status">מושאלת לשכן</span></td>
+                    </tr>
+                -->
+                <table id="future-table">
+                    <tr>
+                        <th>תאריך</th>
+                        <th>שעות</th>
+                        <th>שכן</th>
+                        <th>טלפון</th>
+                        <th>סטטוס</th>
+                    </tr>
+                </table>
+            </div>
+
+            <div id="history-bookings">
+                <h3>היסטוריית הזמנות</h3>
+                <!-- JS: מקבל מהשרת הזמנות שהמועד שלהן עבר ומוסיף שורה לכל אחת:
+                    <tr>
+                        <td>[תאריך]</td>
+                        <td>[שם השכן], דירה [מספר]</td>
+                        <td>[טלפון]</td>
+                    </tr>
+                -->
+                <table id="history-table">
+                    <tr>
+                        <th>תאריך</th>
+                        <th>שכן</th>
+                        <th>טלפון</th>
+                    </tr>
+                </table>
+            </div>
+        </section>
+
+        <!-- ===== 5. מונה הדדיות (ערך הקהילתיות מהאפיון) ===== -->
+        <section id="counter-section">
+            <h2>מונה הדדיות</h2>
+            <!-- JS: מקבל מהשרת כמה פעמים המשתמש אישר בקשות החודש וכותב ב-strong -->
+            <p class="counter">עזרת לשכנים <strong id="help-count"></strong> פעמים החודש</p>
+        </section>
+    </main>
+
+    <footer>
+        <p>© 2026 חניה שכנה | קורל בגון, מיכל ברקוביץ׳, אופק בירן</p>
+    </footer>
+
+</body>
+</html>
