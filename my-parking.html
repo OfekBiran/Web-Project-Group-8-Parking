@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>חניה שכנה | החניה שלי</title>
+    <link href="https://fonts.googleapis.com/css2?family=Heebo:wght@400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
 
@@ -118,27 +120,43 @@
 
                 <p>ימים</p>
                 <div class="days-group">
-                    <input type="checkbox" id="day-sun" name="days" value="sun">
-                    <label for="day-sun">א'</label>
 
-                    <input type="checkbox" id="day-mon" name="days" value="mon">
-                    <label for="day-mon">ב'</label>
+    <label>
+        <input type="checkbox" name="days" value="sun">
+        א'
+    </label>
 
-                    <input type="checkbox" id="day-tue" name="days" value="tue">
-                    <label for="day-tue">ג'</label>
+    <label>
+        <input type="checkbox" name="days" value="mon">
+        ב'
+    </label>
 
-                    <input type="checkbox" id="day-wed" name="days" value="wed">
-                    <label for="day-wed">ד'</label>
+    <label>
+        <input type="checkbox" name="days" value="tue">
+        ג'
+    </label>
 
-                    <input type="checkbox" id="day-thu" name="days" value="thu">
-                    <label for="day-thu">ה'</label>
+    <label>
+        <input type="checkbox" name="days" value="wed">
+        ד'
+    </label>
 
-                    <input type="checkbox" id="day-fri" name="days" value="fri">
-                    <label for="day-fri">ו'</label>
+    <label>
+        <input type="checkbox" name="days" value="thu">
+        ה'
+    </label>
 
-                    <input type="checkbox" id="day-sat" name="days" value="sat">
-                    <label for="day-sat">ש'</label>
-                </div>
+    <label>
+        <input type="checkbox" name="days" value="fri">
+        ו'
+    </label>
+
+    <label>
+        <input type="checkbox" name="days" value="sat">
+        ש'
+    </label>
+
+</div>
                 <span class="error-msg" id="days-error"></span>
 
                 <div class="form-group">
@@ -233,8 +251,9 @@
         <section id="counter-section">
             <h2>מונה הדדיות</h2>
             <!-- JS: מקבל מהשרת כמה פעמים המשתמש אישר בקשות החודש וכותב ב-strong -->
-            <p class="counter">עזרת לשכנים <strong id="help-count"></strong> פעמים החודש</p>
-        </section>
+<p class="counter">
+    עזרת לשכנים <strong id="help-count">0</strong> פעמים החודש
+</p>        </section>
     </main>
 
     <footer>

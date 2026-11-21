@@ -1,0 +1,583 @@
+/* עיצוב כללי */
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Heebo', Arial, sans-serif;
+    background-color: #f5f7fa;
+    color: #243447;
+}
+
+/* כותרת ולוגו */
+
+header {
+    background-color: #243b6b;
+    color: white;
+    padding: 20px 40px;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+    margin: 0;
+}
+
+/* תפריט */
+
+nav {
+    display: flex;
+    gap: 30px;
+    background-color: white;
+    padding: 15px 40px;
+    border-bottom: 1px solid #ddd;
+}
+
+nav a {
+    color: #243b6b;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+/* העמוד שבו נמצאים */
+nav a.active {
+    color: #2563eb;
+}
+
+/* צבע כשעוברים עם העכבר */
+nav a:hover {
+    color: #2563eb;
+}
+
+/* תוכן העמוד */
+
+main {
+    max-width: 1100px;
+    margin: 25px auto;
+    padding: 20px;
+}
+
+/* כותרות */
+
+h1 {
+    color: #243b6b;
+    font-size: 32px;
+}
+
+h2 {
+    color: #243b6b;
+    font-size: 24px;
+}
+
+h3 {
+    color: #243b6b;
+    font-size: 20px;
+}
+
+/* פסקאות */
+
+p {
+    line-height: 1.7;
+}
+
+/* כפתורים */
+
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 180px;
+    padding: 12px 24px;
+    border: none;
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Heebo', Arial, sans-serif;
+}
+
+/* כפתור כחול */
+
+.btn-primary {
+    background-color: #243b6b;
+    color: white;
+}
+
+/* צבע כשעוברים עם העכבר */
+
+.btn-primary:hover {
+    background-color: #1a2d52;
+}
+
+/* טפסים */
+
+form {
+    background-color: white;
+    padding: 30px;
+    border-radius: 10px;
+    max-width: 450px;
+    margin: 20px auto;
+    border: 1px solid #ddd;
+}
+
+/* רווח בין השדות */
+
+.form-group {
+    margin-bottom: 20px;
+}
+
+/* שמות השדות */
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 8px;
+    color: #243b6b;
+}
+
+/* שדות למילוי */
+
+input {
+    width: 100%;
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 16px;
+    font-family: 'Heebo', Arial, sans-serif;
+}
+
+/* מסגרת כחולה כשלוחצים על שדה */
+
+input:focus {
+    border-color: #243b6b;
+}
+
+/* הודעות שגיאה */
+
+.error-msg {
+    color: red;
+    font-size: 14px;
+}
+
+/* כפתורים בטופס */
+
+form .btn {
+    margin-top: 10px;
+}
+
+/* חיפוש חניה */
+
+/* רווח מעל אזור החיפוש */
+
+#search-section {
+    margin-top: 20px;
+}
+
+#search-section h2 {
+    margin-top: 0;
+}
+
+/* טופס חיפוש */
+
+#search-form {
+    max-width: 650px;
+}
+
+/* כפתור חיפוש */
+
+#search-form .btn {
+    width: 200px;
+    margin: 20px auto 0;
+}
+
+/* כרטיסי חניה */
+
+.parking-card {
+    background-color: white;
+    padding: 20px;
+    margin-bottom: 15px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+/* צבעים לפי מצב החניה */
+
+/* העיצוב של מצב החניה */
+
+.status {
+    padding: 5px 10px;
+    border-radius: 6px;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+/* חניה פנויה */
+
+.status-free {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* בקשה שאושרה */
+
+.status-approved {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+/* בקשה שמחכה לאישור */
+
+.status-pending {
+    background-color: #e2e3e5;
+    color: #555;
+}
+
+/* בקשה שנדחתה */
+
+.status-rejected {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* חניה שהושאלה */
+
+.status-borrowed {
+    background-color: #fff3cd;
+    color: #856404;
+}
+
+/* הרכב נמצא בחניה */
+.status-occupied {
+    background-color: #e2e3e5;
+    color: #555;
+}
+
+/* תחתית העמוד */
+
+footer {
+    text-align: center;
+    padding: 20px;
+    color: #666;
+    font-size: 14px;
+}
+
+/* התאמה לטלפון */
+
+@media (max-width: 600px) {
+
+    /* תפריט */
+
+    nav {
+        display: flex;
+        justify-content: space-around;
+        gap: 10px;
+        padding: 15px 10px;
+    }
+
+    nav a {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* כותרת עליונה */
+
+    header {
+        padding: 20px;
+    }
+
+    .logo {
+        font-size: 22px;
+    }
+
+    /* התוכן */
+
+    main {
+        margin: 10px auto;
+        padding: 15px;
+    }
+
+    /* כותרות */
+
+    h1 {
+        font-size: 28px;
+    }
+
+    h2 {
+        font-size: 22px;
+    }
+
+    /* טפסים */
+
+    form {
+        width: 100%;
+        padding: 20px;
+    }
+
+    /* כפתור חיפוש */
+
+    #search-form .btn {
+        width: 100%;
+    }
+
+    /* כרטיסי חניה */
+
+    .parking-card {
+        padding: 15px;
+    }
+}
+
+/* הרשמה */
+
+/* טופס ההרשמה */
+#register-form {
+    max-width: 550px;
+}
+
+/* כותרות בטופס ההרשמה */
+#register-form h2 {
+    font-size: 22px;
+    margin-bottom: 20px;
+    color: #243b6b;
+}
+
+/* כפתור הרשמה */
+#register-form .btn {
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* קישור להתחברות */
+#register-form + p {
+    text-align: center;
+}
+
+/* צבע הקישור להתחברות */
+#register-form + p a {
+    color: #243b6b;
+    font-weight: bold;
+}
+
+/* החניה שלי */
+
+/* החלקים בעמוד */
+#parking-status-section,
+#leave-section,
+#pending-section,
+#bookings-section,
+#counter-section {
+    background-color: white;
+    padding: 25px;
+    margin-bottom: 25px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+}
+
+/* כותרות החלקים */
+#parking-status-section h2,
+#leave-section h2,
+#pending-section h2,
+#bookings-section h2,
+#counter-section h2 {
+    margin-top: 0;
+}
+
+/* מצב החניה */
+#parking-status-section {
+    background-color: #eef3fb;
+    border: 1px solid #c5d5ee;
+}
+
+/* טפסים בחניה שלי */
+#leave-section form {
+    max-width: 600px;
+    margin: 20px 0;
+}
+
+/* כפתורים בטפסים */
+#leave-section form .btn {
+    width: 100%;
+}
+/* בחירת ימים */
+
+/* בחירת ימים */
+
+.days-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+/* הימים ותיבות הסימון */
+
+.days-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    margin-bottom: 0;
+}
+
+/* גודל התיבות */
+
+.days-group input {
+    width: auto;
+}
+
+/* טבלאות */
+
+table {
+    width: 100%;
+    margin: 20px 0;
+    border: 1px solid #ddd;
+    border-spacing: 0;
+}
+
+/* כותרות הטבלה */
+
+th {
+    background-color: #243b6b;
+    color: white;
+    padding: 12px;
+    text-align: right;
+}
+
+/* תאים בטבלה */
+
+td {
+    padding: 12px;
+    border-bottom: 1px solid #ddd;
+}
+
+/* צבע כשעוברים עם העכבר */
+
+tr:hover {
+    background-color: #f5f7fa;
+}
+
+
+/* לשוניות ההזמנות */
+
+.tabs {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 20px;
+}
+
+/* לשונית רגילה */
+
+.tab-btn {
+    background-color: #e2e3e5;
+    color: #243b6b;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: bold;
+    font-family: 'Heebo', Arial, sans-serif;
+}
+
+/* הלשונית שנבחרה */
+
+.tab-btn.active {
+    background-color: #243b6b;
+    color: white;
+}
+
+/* צבע כשעוברים עם העכבר */
+
+.tab-btn:hover {
+    background-color: #c5d5ee;
+}
+
+
+/* מונה עזרה לשכנים */
+
+#counter-section {
+    background-color: #fff3e0;
+    border: 1px solid #ffe0b2;
+    text-align: center;
+}
+
+/* טקסט המונה */
+
+.counter {
+    font-size: 20px;
+    color: #856404;
+}
+
+/* מספר הפעמים שעזרנו */
+
+.counter strong {
+    font-size: 28px;
+    color: #243b6b;
+}
+
+
+/* החניה שלי בטלפון */
+
+@media (max-width: 600px) {
+
+    /* מרווחים קטנים יותר בטלפון */
+
+    #parking-status-section,
+    #leave-section,
+    #pending-section,
+    #bookings-section,
+    #counter-section {
+        padding: 15px;
+    }
+
+    /* לשוניות אחת מתחת לשנייה */
+
+    .tabs {
+        flex-direction: column;
+    }
+
+    /* לשוניות ברוחב מלא */
+
+    .tab-btn {
+        width: 100%;
+    }
+
+    /* פחות רווח בין הימים */
+
+    .days-group {
+        gap: 10px;
+    }
+
+    /* טבלה קטנה יותר בטלפון */
+
+    th, td {
+        padding: 8px;
+        font-size: 12px;
+    }
+}
+
+/* תפריט בתחתית הטלפון */
+
+@media (max-width: 600px) {
+
+    nav {
+        position: fixed;
+        bottom: 0;
+        width: 100%;
+        background-color: white;
+        border-top: 1px solid #ddd;
+        display: flex;
+        justify-content: space-around;
+        padding: 15px 10px;
+    }
+
+    nav a {
+        font-size: 14px;
+        text-align: center;
+    }
+
+    /* רווח בתחתית כדי שהתפריט לא יסתיר תוכן */
+    body {
+        padding-bottom: 70px;
+    }
+}
